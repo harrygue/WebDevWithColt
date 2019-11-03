@@ -12,17 +12,27 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 
+console.log(process.env.DATABASEURL);
+
 // first connection line was shown in video 304 (Jan) and throws an error, so use old connection string
 // mongoose.connect("mongodb:27017//localhost/yelp_camp",{useNewUrlParser: true});
 // mongoose.connect("mongodb://localhost/yelp_camp",{useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect("mongodb+srv://Harald:ObEc4511hg@yelpcampcluster-u38dh.mongodb.net/test?authSource=admin&retryWrites=true",{
+mongoose.connect(process.env.DATABASEURL,{
     useNewUrlParser: true, 
-    useCreateIndex:true,
-    useUnifiedTopology: true}).then(() => {
+    useUnifiedTopology: true,
+    useCreateIndex:true}).then(() => {
         console.log("connected to DB!");
     }).catch(err => {
         console.log("ERROR:",err.message);
     });
+// mongoose.connect("mongodb+srv://Harald:ObEc4511hg@yelpcampcluster-u38dh.mongodb.net/test?authSource=admin&retryWrites=true",{
+//     useNewUrlParser: true, 
+//     useCreateIndex:true,
+//     useUnifiedTopology: true}).then(() => {
+//         console.log("connected to DB!");
+//     }).catch(err => {
+//         console.log("ERROR:",err.message);
+//     });
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
