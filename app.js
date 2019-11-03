@@ -15,7 +15,7 @@ var passportLocalMongoose = require("passport-local-mongoose");
 // first connection line was shown in video 304 (Jan) and throws an error, so use old connection string
 // mongoose.connect("mongodb:27017//localhost/yelp_camp",{useNewUrlParser: true});
 // mongoose.connect("mongodb://localhost/yelp_camp",{useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect("mongodb+srv://Harald:ObEc4511hg@yelpcampcluster-u38dh.mongodb.net/test",{useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb+srv://Harald:ObEc4511hg@yelpcampcluster-u38dh.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true, useUnifiedTopology: true});
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
