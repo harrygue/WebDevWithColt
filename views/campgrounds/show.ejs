@@ -19,10 +19,31 @@
                     <p><em>Submitted by <%= campground.author.username%></em></p> 
 
                     <% if(currentUser && campground.author.id.equals(currentUser._id)){ %>
-                        <a class="btn btn-warning" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
-                        <form style="display: inline;" action="/campgrounds/<%=campground._id%>/?_method=DELETE" method="POST">
-                            <button class="btn btn-danger">Delete</button>
-                        </form>
+                        <a class="btn btn-warning btn-sm" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
+                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirm_delete_campground">Delete</button>
+                        <!-- Modal -->
+                        <div id="confirm_delete_campground" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal Content -->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button class="close" data-dismiss="modal">&times;</button>        
+                                        <h4 class="modal-title">Do you really want to delete this asset?</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>The content of this asset will be completely deleted, please confirm!</p>
+                                    </div> 
+                                    <div class="modal-footer">
+                                        <form style="display: inline;" action="/campgrounds/<%=campground._id%>/?_method=DELETE" method="POST">
+                                            <button class="btn btn-danger btn-sm">Confirm Delete</button>
+                                        </form>
+                                        <button class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                     <% } %>
 
                     
@@ -42,9 +63,30 @@
                             <p><%=comment.text%></p>
                             <% if(currentUser && currentUser._id.equals(comment.author.id)){ %>
                                 <a class="btn btn-xs btn-warning" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">Edit</a>
-                                <form style="display: inline;" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-                                    <button class="btn btn-xs btn-danger">Delete</button>
-                                </form>
+                                
+                                
+                                <!-- Wrap delete into modal -->
+                                 <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirm_delete_comment">Delete</button>
+                                <div id="confirm_delete_comment" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button class="close" data-dismiss="modal">&times;</button>        
+                                                <h4 class="modal-title">Do you really want to delete this asset?</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>The content of this asset will be completely deleted, please confirm!</p>
+                                            </div> 
+                                            <div class="modal-footer">
+                                                <form style="display: inline;" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                                    <button class="btn btn-xs btn-danger">Confirm Delete</button>
+                                                </form>
+                                                <button class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             <% } %>
                          </div>
                     </div>

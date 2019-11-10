@@ -4,6 +4,8 @@ var path = require('path');
 var Campground = require("../models/campground");
 var Comment = require("../models/comment");
 var middleware = require("../middleware");
+
+// File upload configuration
 var multer = require('multer');
 var storage = multer.diskStorage({
     filename: function(req,file,callback){
@@ -19,6 +21,7 @@ var imageFilter = function(req,file,cb){
 };
 var upload = multer({ storage: storage, fileFilter: imageFilter});
 
+// CLOUDINARY CONFIG
 var cloudinary = require('cloudinary');
 cloudinary.config({
     cloud_name: 'dlxmy2ytu',
