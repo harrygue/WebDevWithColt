@@ -1,0 +1,17 @@
+.picture li {
+    background-image: url(http://i.imgur.com/K3mPv14.jpg);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.form-group {
+    z-index: 1;
+}

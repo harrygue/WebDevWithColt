@@ -17,7 +17,7 @@ console.log(process.env.DATABASEURL);
 // first connection line was shown in video 304 (Jan) and throws an error, so use old connection string
 // mongoose.connect("mongodb:27017//localhost/yelp_camp",{useNewUrlParser: true});
 // mongoose.connect("mongodb://localhost/yelp_camp",{useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect(process.env.DATABASEURL,{
+mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/yelp_camp",{
     useNewUrlParser: true, 
     useUnifiedTopology: true,
     useCreateIndex:true}).then(() => {
